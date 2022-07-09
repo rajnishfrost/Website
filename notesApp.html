@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+</head>
+<style>
+    /* / main container  / */
+    .mainContainer
+    {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+    /* / container1 / */
+    .container1
+    {
+        height: 20%;
+        background-color: rgb(110, 190, 255);
+    }
+    .container1 h1
+    {
+        font-size: 50px;
+        margin-left: 15%;
+        display: inline-block;
+    }
+    .container1 p{
+        font-size: 25px;
+        margin-left: 15%;
+        display: inline-block;
+        margin-top: 0px;
+    }
+    /* / container2 / */
+    .container2
+    {
+        height: 10%;
+        background-color: rgb(161, 161, 161);
+    }
+    .container2 button
+    {
+        margin-left: 15%;
+        margin-top: 2%;
+        width: 10%;
+        height: 35%;
+    }
+    /* / container3  / */
+    .container3
+    {
+        height: 69%;
+        width: auto;
+    }
+   #createButton
+    {
+        margin-left: 15%;
+        margin-top: 2%;
+        width: 7%;
+        height: 4%;
+    }
+    #newDi
+    {
+        height: 200px;
+        width: 200px;
+        border: solid red 2px;
+    }
+</style>
+<body>
+    <div class="mainContainer">
+        <div class="container1">
+            <h1>Notes App</h1>
+            <br>
+            <p>Take Notes And Never Forget</p>
+        </div>
+        <div class="container2" id="container2">
+            <button type="button" id="sortButton" onclick="">Sort By Tittle</button>
+        </div>
+        <div class="container3" id="container3">
+            <button type="button" id="createButton" onclick="newDiv()">Create Note</button>
+        </div>
+    </div>
+    <script>
+        let y = [];
+        x={
+            name: "Rajnish",
+            phone: 7275158108,
+            company: "Apple"
+        };
+        z={
+            name: "Suraj",
+            phone: 1234567890,
+            company: "Mapple"
+        };
+        y.push(x);
+        console.log(y);
+    </script>
+</body>
+</html>

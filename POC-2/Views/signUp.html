@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<style>
+    .main {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: blanchedalmond;
+    }
+ h1{
+       text-align: center;
+       font-size: 50px;
+       background-color: grey;
+    }
+
+    .sub{
+        margin-top: 5%;
+        margin-left: 40%;
+        height:500px;
+        width: 400px;
+    }
+    
+    .sub p{
+        font-size: 20px;
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+    .sub input {
+        width: 80%;
+        height: 25px;
+        border-style: none;
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: grey;
+    }
+    .sub input:hover{
+        background-color:rgb(250, 158, 19) ;
+    }
+    .sub button {
+        margin-top: 30px;
+        margin-left: 33%;
+        height: 30px;
+        width: 80px;
+        border-radius: 10px;
+        border-style: none;
+        background-color:grey;
+        font-size: 15px;
+    }
+    .sub button:hover{
+        background-color:rgb(250, 158, 19) ;
+        cursor: pointer;
+    }
+    .sub a{
+        margin-left: 26.5%;
+    }
+</style>
+
+<body>
+
+    <div class="main">
+        <h1>Sign Up</h1>
+        <div class="sub">
+            <form action="" method="post">
+                <p>First Name</p>
+                <input type="text" name="name">
+                <p>Last Name</p>
+                <input type="text" name="lastName">
+                <p>Email</p>
+                <input type="text" name="email">
+                <p>Password</p>
+                <input type="text" name="password">
+                <p>Re-enter Password</p>
+                <input type="text" name="reEnterPassword">
+                <br>
+                <button>Sign Up</button>
+                <br>
+                <br>
+                <a href="/">Already Resigstered</a>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* maincontainer */
+        .maincontainer {
+            background: linear-gradient(45deg, rgb(79, 74, 74) 50%, rgb(237, 99, 25));
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            /* border: solid greenyellow 2px; */
+            /* display: flex;
+            flex-direction: column; */
+        }
+
+        .subcontainerinput {
+
+            margin: 10px;
+            height: 40%;
+            width: 99%;
+            /* border: solid rgb(17, 0, 255) 2px; */
+        }
+
+        .subcontainerinput h1 {
+            text-align: center;
+            color: white;
+            font-size: 50px;
+        }
+
+        #tittlearea {
+            border-radius: 10px;
+            margin: 0% 37%;
+            border: none;
+            height: 7%;
+            width: 25%;
+            padding-left: 10px;
+        }
+
+        #tittlearea:hover {
+            background-color: rgb(209, 209, 209);
+        }
+
+        #textarea {
+            height: 36%;
+            width: 60%;
+            margin: 1% 20%;
+            border-radius: 10px;
+            border: none;
+            padding-left: 10px;
+        }
+
+        #textarea:hover {
+            background-color: rgb(209, 209, 209);
+        }
+
+
+        .subcontainerinput button {
+            margin: 0% 46%;
+            border-radius: 20px;
+            border: none;
+            height: 25px;
+            width: 100px;
+        }
+
+        .subcontainerinput button:hover {
+            background-color: rgb(209, 209, 209);
+        }
+
+        /* sortButton */
+        label {
+            color: rgb(255, 255, 255);
+            margin-left: 47%;
+            font-size: 30px;
+            font-weight: bolder;
+
+        }
+
+        #sortButton {
+            border-radius: 8px;
+            height: 25px;
+            width: 100px;
+            margin-top: 4Px;
+            margin-left: 42.6%;
+            border: none;
+            font-size: 100%;
+        }
+
+        #sortButton:hover {
+            background-color: rgb(209, 209, 209);
+        }
+
+        #sortDateButton {
+            border-radius: 8px;
+            height: 25px;
+            width: 100px;
+            margin-top: 4Px;
+            margin-left: 1%;
+            border: none;
+            font-size: 100%;
+        }
+        #sortDateButton:hover{
+            background-color: rgb(209, 209, 209);
+        }
+
+        /* .subcontainer2 */
+
+        .subcontaineriinput {
+            display: flex;
+            overflow-y: scroll;
+
+        }
+        .subcontaineriinput input{
+            font-size: 16px;
+        }
+
+        h1 {
+            background-color: rgb(255, 191, 157);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="maincontainer">
+        <div class="subcontainerinput">
+            <h1 class="common1"> Notes</h1>
+            <input required type="text" name="" id="tittlearea" placeholder="Tittle">
+            <input required type="text" id="textarea" placeholder="Add Text">
+            <button onclick="addbutton()" id="addbutton">Add Note</button>
+        </div>
+        <hr>
+        <label for="">Sort By</label>
+        <br>
+        <button onclick="sortByTitle()" id="sortButton">Tittle</button>
+        <button onclick="sortByDate()" id="sortDateButton">Recent</button>
+        <div class="subcontaineriinput" id="div2">
+        </div>
+    </div>
+    <script>
+        //on browser reload 
+        x2 = localStorage.length;
+        console.log(x2);
+        if (x2 != 0) {
+            for (let index = 0; index < localStorage.length; index++) {
+                fetchValue = localStorage.getItem(index);
+                obj = JSON.parse(fetchValue);
+                const subcontaineriinput = document.getElementById("div2");
+                // creating div container
+                const div = document.createElement("div");
+                div.setAttribute("id", `subcontaineriinput${index}`);
+                div.setAttribute('style', `height: 200px;width: 200px;margin-bottom:60px;margin-left:2%;margin-top:2%;`);
+                subcontaineriinput.appendChild(div);
+
+                // creating input tittle and setting attributes
+                const inputtittle = document.createElement("input");
+                div.appendChild(inputtittle);
+                inputtittle.setAttribute("type", "text");
+                inputtittle.setAttribute("id", `tittlearea${index}`);
+                inputtittle.setAttribute('style', `border:none;width:187px;border-radius:20px;background: linear-gradient(45deg, ${obj.color} 50%, ${obj.color2});color:white;height: 30px;border-radius: 20px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;padding-left: 16px;`);
+                let tittle = obj.title;
+
+                document.getElementById(`tittlearea${index}`).value = tittle;
+                document.getElementById(`tittlearea${index}`).readOnly = true;
+
+                // text area 
+                const inputtext = document.createElement("input");
+                div.appendChild(inputtext);
+                inputtext.setAttribute("type", "text");
+                inputtext.setAttribute("id", `textarea${index}`);
+                inputtext.setAttribute('style', `border:none;width:187px;height:130px;border-radius: 20px;margin-top:2px;background:linear-gradient(45deg, ${obj.color} 50%, ${obj.color2});color:white;border-top-left-radius: 0px;border-top-right-radius: 0px;padding-left: 16px;`);
+                let text = obj.text;
+                document.getElementById(`textarea${index}`).value = text;
+                document.getElementById(`textarea${index}`).readOnly = true;
+
+                // creating date 
+                let date = document.createElement("p");
+                date.setAttribute('style', 'color:white;text-align:center;margin-top:10%;');
+                date.setAttribute("id", `d${index}`);
+                div.appendChild(date);
+                document.getElementById(`d${index}`).innerHTML = obj.date;
+
+                // creating delete BUTTON
+                const deletebutton = document.createElement("button");
+                div.appendChild(deletebutton);
+                const textToButton = document.createTextNode("Delete");
+                deletebutton.appendChild(textToButton);
+                deletebutton.setAttribute("id", `deleteButton ${index}`);
+                deletebutton.setAttribute("onclick", "deleteButton(this.id)")
+                deletebutton.setAttribute('style', `border:none;width: 70px;margin-left: 60px;margin-top: 0px;border-radius: 20px;background:linear-gradient(45deg, ${obj.color} 50%, ${obj.color2});color:white`);
+
+                // creating Edit BUTTON
+                const editbutton = document.createElement("button");
+                div.appendChild(editbutton);
+                const addingTextToEditButton = document.createTextNode("Edit");
+                editbutton.appendChild(addingTextToEditButton);
+                editbutton.setAttribute("id", `editButton ${index}`);
+                editbutton.setAttribute("onclick", "editButton(this.id)")
+                editbutton.setAttribute('style', `border:none;width: 70px;margin-left: 60px;margin-top: 1px;border-radius: 20px;background:linear-gradient(45deg, ${obj.color} 50%, ${obj.color2});color:white`);
+
+                //creating save button
+                const savebutton = document.createElement("button");
+                div.appendChild(savebutton);
+                const addingTextTosaveButton = document.createTextNode("Save");
+                savebutton.appendChild(addingTextTosaveButton);
+                savebutton.setAttribute("id", `saveButton ${index}`);
+                savebutton.setAttribute("onclick", "saveButton(this.id)")
+                savebutton.setAttribute('style', `width: 70px;margin-left: 60px;margin-top:5px;border-radius: 20px;background: linear-gradient(45deg, ${obj.color} 50%, ${obj.color2});color:white;border:none;`);
+            }
+        }
+        //after loading the browser
+        //==================================================================================================================================================
+        let y = [];
+        let tittleValue = [];
+        let textValue = [];
+        let dateValue = [];
+        function addbutton() {
+
+
+            CreatingElement();
+
+        }
+        let count = x2;
+        let hex = "";
+        function CreatingElement() {
+            hex = '#' + Math.random().toString(16).substring(2, 8);
+            hex1 = '#' + Math.random().toString(16).substring(2, 8);
+            let req = document.getElementById("tittlearea").value;
+            let req2 = document.getElementById("textarea").value;
+            if (req != "" && req2 != "") {
+                // fetching subcontainer2 from html to js subcontainer2
+                const subcontaineriinput = document.getElementById("div2");
+                // creating div container
+                const div = document.createElement("div");
+                div.setAttribute("id", `subcontaineriinput${count}`);
+                div.setAttribute('style', `height: 200px;width: 200px;margin-bottom:60px;margin-left:2%;margin-top:2%;border:none;`);
+                subcontaineriinput.appendChild(div);
+
+                // creating  tittle and setting attributes
+                const inputtittle = document.createElement("input");
+                div.appendChild(inputtittle);
+                inputtittle.setAttribute("type", "text");
+                inputtittle.setAttribute("id", `tittlearea${count}`);
+                inputtittle.setAttribute('style', `height:20px;width:187px;border-radius:20px;background: linear-gradient(45deg, ${hex} 50%, ${hex1});color:white;border:none;height: 30px;border-radius: 20px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;padding-left: 16px;`);
+                let tittle = document.getElementById("tittlearea").value;
+                document.getElementById(`tittlearea${count}`).value = tittle;
+                document.getElementById(`tittlearea${count}`).readOnly = true;
+
+                // text area 
+                const inputtext = document.createElement("input");
+                div.appendChild(inputtext);
+                inputtext.setAttribute("type", "text");
+                inputtext.setAttribute("id", `textarea${count}`);
+                inputtext.setAttribute('style', `width:187px;height:130px;border-radius: 20px;margin-top:2px;background: linear-gradient(45deg, ${hex} 50%, ${hex1});color:white;border:none;border-top-left-radius: 0px;border-top-right-radius: 0px;padding-left: 16px;`);
+                let text = document.getElementById("textarea").value;
+                document.getElementById(`textarea${count}`).value = text;
+                document.getElementById(`textarea${count}`).readOnly = true;
+
+                // creating date 
+                let date = document.createElement("p");
+                date.setAttribute('style', `text-align:center;margin-top:2%;color:white;`);
+                date.setAttribute("id", `d${count}`);
+                let date2 = new Date();
+                let day = date2.getDay();
+                let month = date2.getMonth()+1;
+                let year = date2.getFullYear();
+                let h = date2.getHours();
+                let m = date2.getMinutes();
+                let s = date2.getSeconds();
+                div.appendChild(date);
+                let p_date = ""+day+"/"+month+"/"+year;
+                let time = "" + h + " : " + m + " : " + s;
+                document.getElementById(`d${count}`).innerHTML = p_date+" "+time;
+                
+
+                //  making array object 
+                tittleValue[count] = document.getElementById(`tittlearea${count}`).value;
+                textValue[count] = document.getElementById(`textarea${count}`).value;
+                dateValue[count] = document.getElementById(`d${count}`).innerText;
+
+                y.push(
+                    {
+                        title: tittleValue[count],
+                        text: textValue[count],
+                        date: dateValue[count],
+                        color: hex,
+                        color2: hex1
+                    }
+                );
+
+                // creating delete BUTTON
+                const deletebutton = document.createElement("button");
+                div.appendChild(deletebutton);
+                const textToButton = document.createTextNode("Delete");
+                deletebutton.appendChild(textToButton);
+                deletebutton.setAttribute("id", `deleteButton ${count}`);
+                deletebutton.setAttribute("onclick", "deleteButton(this.id)")
+                deletebutton.setAttribute('style', `width: 70px;margin-left: 60px;margin-top:0px;border-radius: 20px;background: linear-gradient(45deg, ${hex} 50%, ${hex1});color:white;border:none;`);
+
+                // creating Edit BUTTON
+                const editbutton = document.createElement("button");
+                div.appendChild(editbutton);
+                const addingTextToEditButton = document.createTextNode("Edit");
+                editbutton.appendChild(addingTextToEditButton);
+                editbutton.setAttribute("id", `editButton ${count}`);
+                editbutton.setAttribute("onclick", "editButton(this.id)")
+                editbutton.setAttribute('style', `width: 70px;margin-left: 60px;margin-top:5px;border-radius: 20px;background: linear-gradient(45deg, ${hex} 50%, ${hex1});color:white;border:none;`);
+
+                //creating save button
+                const savebutton = document.createElement("button");
+                div.appendChild(savebutton);
+                const addingTextTosaveButton = document.createTextNode("Save");
+                savebutton.appendChild(addingTextTosaveButton);
+                savebutton.setAttribute("id", `saveButton ${count}`);
+                savebutton.setAttribute("onclick", "saveButton(this.id)")
+                savebutton.setAttribute('style', `width: 70px;margin-left: 60px;margin-top:5px;border-radius: 20px;background: linear-gradient(45deg, ${hex} 50%, ${hex1});color:white;border:none;`);
+
+                // Setting local sotrage 
+                localStorage.setItem(count, JSON.stringify(y[count]));
+                count++;
+
+                //   for clearing main tittle and text area
+                document.getElementById("tittlearea").value = "";
+                tittle = document.getElementById("tittlearea").value;
+                document.getElementById("textarea").value = "";
+                text = document.getElementById("textarea").value;
+            }
+
+
+
+        }
+
+        // delete button function
+        function deleteButton(clicked_id) {
+            let str = clicked_id.toString();
+            let x = str.split(" ");
+            delDiv = document.getElementById(`subcontaineriinput${x[1]}`);
+            delDiv.remove();
+            localStorage.removeItem(x[1]);
+            count=x2;
+        }
+
+        // edit button function
+        function editButton(clicked_id) {
+            let str = clicked_id.toString();
+            let x = str.split(" ");
+            document.getElementById(`tittlearea${x[1]}`).readOnly = false;
+            document.getElementById(`textarea${x[1]}`).readOnly = false;
+            let date2 = new Date();
+            let day = date2.getDay();
+            let month = date2.getMonth() + 1;
+            let year = date2.getFullYear();
+            let h = date2.getHours();
+            let m = date2.getMinutes();
+            let s = date2.getSeconds();
+            let p_date = "" + day + "/" + month + "/" + year;
+            let time = "" + h + " : " + m + " : " + s;
+            d2 = p_date + " " + time;
+            document.getElementById(`d${x[1]}`).innerHTML =  p_date + " " + time;
+            y[x[1]].date = d2;
+            fetchValue = localStorage.getItem(x[1]);
+            obj = JSON.parse(fetchValue);
+            obj.date = d2;
+            localStorage.setItem(x[1], JSON.stringify(obj));
+        }
+
+        // save button function
+        function saveButton(clicked_id) {
+            let str = clicked_id.toString();
+            let x = str.split(" ");
+            document.getElementById(`tittlearea${x[1]}`).readOnly = true;
+            document.getElementById(`textarea${x[1]}`).readOnly = true;
+            y[x[1]].title = document.getElementById(`tittlearea${x[1]}`).value;
+            y[x[1]].text = document.getElementById(`textarea${x[1]}`).value;
+            // Setting local sotrage 
+
+            fetchValue = localStorage.getItem(x[1]);
+            obj = JSON.parse(fetchValue);
+            obj.title = document.getElementById(`tittlearea${x[1]}`).value;
+            obj.text = document.getElementById(`textarea${x[1]}`).value;
+            localStorage.setItem(x[1], JSON.stringify(obj));
+
+        }
+
+        // sort by title button function
+        function sortByTitle() {
+            y.sort(function (a, b) {
+                let t1 = a.title;
+                let t2 = b.title;
+                if (t1 > t2)
+                    return 1;
+                if (t1 < t2)
+                    return -1;
+                return 0;
+
+            });
+            for (let index = 0; index < count; index++) {
+                delDiv = document.getElementById(`subcontaineriinput${index}`);
+                delDiv.remove();
+            }
+            for (let index = 0; index < count; index++) {
+                const subcontaineriinput = document.getElementById("div2");
+                // creating div container
+                const div = document.createElement("div");
+                div.setAttribute("id", `subcontaineriinput${index}`);
+                div.setAttribute('style', `height: 200px;width: 200px;margin-bottom:60px;margin-left:2%;margin-top:2%;`);
+                subcontaineriinput.appendChild(div);
+
+                // creating input tittle and setting attributes
+                const inputtittle = document.createElement("input");
+                div.appendChild(inputtittle);
+                inputtittle.setAttribute("type", "text");
+                inputtittle.setAttribute("id", `tittlearea${index}`);
+                inputtittle.setAttribute('style', `border:none;width:187px;border-radius:20px;background: linear-gradient(45deg, ${y[index].color} 50%, ${y[index].color2});color:white;height: 30px;border-radius: 20px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;padding-left: 16px;`);
+                let tittle = y[index].title;
+                document.getElementById(`tittlearea${index}`).value = tittle;
+                document.getElementById(`tittlearea${index}`).readOnly = true;
+
+                // text area 
+                const inputtext = document.createElement("input");
+                div.appendChild(inputtext);
+                inputtext.setAttribute("type", "text");
+                inputtext.setAttribute("id", `textarea${index}`);
+                inputtext.setAttribute('style', `border:none;width:187px;height:130px;border-radius: 20px;margin-top:2px;background:linear-gradient(45deg, ${y[index].color} 50%, ${y[index].color2});color:white;border-top-left-radius: 0px;border-top-right-radius: 0px;padding-left: 16px;`);
+                let text = y[index].text;
+                document.getElementById(`textarea${index}`).value = text;
+                document.getElementById(`textarea${index}`).readOnly = true;
+
+                // creating date 
+                let date = document.createElement("p");
+                date.setAttribute('style', 'color:white;text-align:center;margin-top:10%;');
+                date.setAttribute("id", `d${index}`);
+                div.appendChild(date);
+                document.getElementById(`d${index}`).innerHTML =localStorage.setItem(y[index].date);
+
+                // creating delete BUTTON
+                const deletebutton = document.createElement("button");
+                div.appendChild(deletebutton);
+                const textToButton = document.createTextNode("Delete");
+                deletebutton.appendChild(textToButton);
+                deletebutton.setAttribute("id", `deleteButton ${index}`);
+                deletebutton.setAttribute("onclick", "deleteButton(this.id)")
+                deletebutton.setAttribute('style', `border:none;width: 70px;margin-left: 60px;margin-top: 0px;border-radius: 20px;background:linear-gradient(45deg, ${y[index].color} 50%, ${y[index].color2});color:white`);
+
+                // creating Edit BUTTON
+                const editbutton = document.createElement("button");
+                div.appendChild(editbutton);
+                const addingTextToEditButton = document.createTextNode("Edit");
+                editbutton.appendChild(addingTextToEditButton);
+                editbutton.setAttribute("id", `editButton ${index}`);
+                editbutton.setAttribute("onclick", "editButton(this.id)")
+                editbutton.setAttribute('style', `border:none;width: 70px;margin-left: 60px;margin-top: 1px;border-radius: 20px;background:linear-gradient(45deg, ${y[index].color} 50%, ${y[index].color2});color:white`);
+
+                //creating save button
+                const savebutton = document.createElement("button");
+                div.appendChild(savebutton);
+                const addingTextTosaveButton = document.createTextNode("Save");
+                savebutton.appendChild(addingTextTosaveButton);
+                savebutton.setAttribute("id", `saveButton ${index}`);
+                savebutton.setAttribute("onclick", "saveButton(this.id)")
+                savebutton.setAttribute('style', `width: 70px;margin-left: 60px;margin-top:5px;border-radius: 20px;background: linear-gradient(45deg, ${y[index].color} 50%, ${y[index].color2});color:white;border:none;`);
+
+            }
+
+        }
+        //SORT BY DATE FUNCTINON
+        function sortByDate() {
+            y.sort(function (a, b) {
+                let d1 = a.date;
+                let d2 = b.date;
+                if (d1 > d2)
+                    return -1;
+                if (d1 < d2)
+                    return 1;
+                return 0;
+
+            });
+
+
+            for (let index = 0; index < count; index++) {
+                delDiv = document.getElementById(`subcontaineriinput${index}`);
+                delDiv.remove();
+            }
+            for (let index = 0; index < count; index++) {
+                const subcontaineriinput = document.getElementById("div2");
+
+                // creating div container
+                const div = document.createElement("div");
+                div.setAttribute("id", `subcontaineriinput${index}`);
+                div.setAttribute('style', `height: 200px;width: 200px;margin-bottom:60px;margin-left:2%;margin-top:2%`);
+                subcontaineriinput.appendChild(div);
+
+                // creating input tittle and setting attributes
+                const inputtittle = document.createElement("input");
+                div.appendChild(inputtittle);
+                inputtittle.setAttribute("type", "text");
+                inputtittle.setAttribute("id", `tittlearea${index}`);
+                inputtittle.setAttribute('style', `border:none;width:187px;border-radius:20px;background:linear-gradient(45deg, ${y[index].color} 50%, ${y[index].color2});color:white;height: 30px;border-radius: 20px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;padding-left: 16px;`);
+                let tittle = y[index].title;
+                document.getElementById(`tittlearea${index}`).value = tittle;
+                document.getElementById(`tittlearea${index}`).readOnly = true;
+
+                // text area 
+                const inputtext = document.createElement("input");
+                div.appendChild(inputtext);
+                inputtext.setAttribute("type", "text");
+                inputtext.setAttribute("id", `textarea${index}`);
+                inputtext.setAttribute('style', `border:none;width:187px;height:130px;border-radius: 20px;margin-top:2px;background:linear-gradient(45deg, ${y[index].color} 50%, ${y[index].color2});color:white;border-top-left-radius: 0px;border-top-right-radius: 0px;padding-left: 16px;`);
+                let text = y[index].text;
+                document.getElementById(`textarea${index}`).value = text;
+                document.getElementById(`textarea${index}`).readOnly = true;
+
+                // creating date 
+                let date = document.createElement("p");
+                date.setAttribute('style', 'color:white;text-align:center;margin-top:10%;');
+                date.setAttribute("id", `d${index}`);
+                div.appendChild(date);
+                document.getElementById(`d${index}`).innerHTML = y[index].date;;
+
+                // creating delete BUTTON
+                const deletebutton = document.createElement("button");
+                div.appendChild(deletebutton);
+                const textToButton = document.createTextNode("Delete");
+                deletebutton.appendChild(textToButton);
+                deletebutton.setAttribute("id", `deleteButton ${index}`);
+                deletebutton.setAttribute("onclick", "deleteButton(this.id)")
+                deletebutton.setAttribute('style', `border:none;width: 70px;margin-left: 60px;margin-top: 0px;border-radius: 20px;background:linear-gradient(45deg, ${y[index].color} 50%, ${y[index].color2});color:white`);
+
+                // creating Edit BUTTON
+                const editbutton = document.createElement("button");
+                div.appendChild(editbutton);
+                const addingTextToEditButton = document.createTextNode("Edit");
+                editbutton.appendChild(addingTextToEditButton);
+                editbutton.setAttribute("id", `editButton ${index}`);
+                editbutton.setAttribute("onclick", "editButton(this.id)")
+                editbutton.setAttribute('style', `border:none;width: 70px;margin-left: 60px;margin-top: 1px;border-radius: 20px;background:linear-gradient(45deg, ${y[index].color} 50%, ${y[index].color2});color:white`);
+
+                //creating save button
+                const savebutton = document.createElement("button");
+                div.appendChild(savebutton);
+                const addingTextTosaveButton = document.createTextNode("Save");
+                savebutton.appendChild(addingTextTosaveButton);
+                savebutton.setAttribute("id", `saveButton ${index}`);
+                savebutton.setAttribute("onclick", "saveButton(this.id)")
+                savebutton.setAttribute('style', `width: 70px;margin-left: 60px;margin-top:5px;border-radius: 20px;background: linear-gradient(45deg, ${y[index].color} 50%, ${y[index].color2});color:white;border:none;`);
+            }
+
+
+        }
+
+    </script>
+</body>
+
+</html>

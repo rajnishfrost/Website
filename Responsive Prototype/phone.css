@@ -1,0 +1,29 @@
+/* navbar */
+
+    .navbar{
+        background-color:rgb(126, 123, 123);
+    }
+
+    .navbar ul
+    {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        right: 10px;
+    }
+    .navbar ul li
+    {
+        color: white;
+        margin: 15px;
+        font-size: smaller;
+    }
+/* login box  */
+    #loginbox
+    {
+      
+        display: inline-block;
+        position: relative;
+        top: 25%;
+        left: 28%;
+    }
+    

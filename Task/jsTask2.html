@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+
+<body>
+    <h1 id="h1">This Is H1 Heading</h1>
+</body>
+<script>
+    // The JavaScript this Keyword
+    // In JavaScript, the this keyword refers to an object. Which object depends on how this is being invoked (used or called).The this keyword refers to different objects depending on how it is used:
+    // Create an object:
+    // const person = {
+    //     firstName: "John",
+    //     lastName: "Doe",
+    //     id: 5566,
+    //     fullName: function () {
+    //         return this.firstName + " " + this.lastName;
+    //     }
+    // };
+    // console.log(person.fullName());
+
+    // this Alone
+    //     When used alone, this refers to the global object.Because this is running in the global scope.In a browser window the global object is[object Window]
+    // let x = this;
+    // console.log(x);
+
+    // In strict mode, when used alone, this also refers to the global object:
+    // "use strict";
+    // let x = this;
+    // console.log(x);
+
+    //     this in a Function (Default)
+    // In a function, the global object is the default binding for this.In a browser window the global object is [object Window]:
+    // function myFunction() {
+    //     return this;
+    // }
+    // console.log(myFunction());
+
+    // The new keyword creates new objects.
+    // let a = new Array;
+    // a = [0, 1, 2, 3, 4, 5];
+    // console.log(a);
+
+//     When a web page is loaded, the browser creates a Document Object Model of the page.The HTML DOM model is constructed as a tree of Objects:
+// JavaScript can change all the HTML elements in the page
+// JavaScript can change all the HTML attributes in the page
+// The getElementById Method & The innerHTML Property
+// document.getElementById("h1").innerHTML="This Is From DOM";
+// element.innerHTML =  new html content	Change the inner HTML of an element
+// element.attribute = new value	Change the attribute value of an HTML element
+// element.style.property = new style	Change the style of an HTML element
+// Method	Description
+// element.setAttribute(attribute, value)	Change the attribute value of an HTML element
+
+// Difference between ES5 and ES6
+// 1. ECMAScript 5 (ES5P) : 
+// ES5 is also known as ECMAScript 2009 as it is released in 2009. It is a function contractors focus on how the objects are instantiated. For ES5 you have to write function keyword and return, to be used to define the function, like normal general JavaScript language. 
+// 2. ECMAScript 6 (ES6) : 
+// ES6 is also known as ECMAScript 2015 as it is released in 2015. Its class allows the developers to instantiate an object using the new operator, using an arrow function, in case it doesn’t need to use function keyword to define the function, also return keyword can be avoided to fetch the computer value. 
+
+// JavaScript Use Strict
+// With strict mode, you can not, for example, use undeclared variables
+// Declared at the beginning of a script, it has global scope (all code in the script will execute in strict mode):
+// "use strict";
+// x = 3.14; 
+// console.log(x);
+
+// erro handing
+// The try statement defines a code block to run (to try).
+// The catch statement defines a code block to handle any error.
+// The finally statement defines a code block to run regardless of the result.
+// The throw statement defines a custom error.
+// TRY AND CATCH
+// try {
+//   addalert("Welcome guest!");
+// }
+// catch(err) {
+//   console.log(err.message); 
+// }
+// b=9;
+// try {
+//   c=a+b;
+//   console.log(c);
+// }
+// catch(err) {
+//   console.log(err.message); 
+// }
+//THROW 
+//The throw statement allows you to create a custom error.
+// function myFunction() {
+//   let x = 6;
+//   try { 
+//     if(x == "")  throw "empty";
+//     if(isNaN(x)) throw "not a number";
+//     x = Number(x) ;
+//     if(x < 5)  throw "too low";
+//     if(x > 10)   throw "too high";
+//   }
+//   catch(err) {
+//     console.log("Input is " + err);
+//   }
+// }
+// myFunction();
+
+ 
+// Array methods
+// to convert to Strings
+// var arr = [1,2,3,4,6];
+// var c = arr.toString(arr);
+// var arr = [1,2,3,4,6];
+// var c = arr.join("$");
+// console.log(c);
+// var arr = [1,2,3,4,6];
+// var b = [2,4];
+// var c = arr.concat(b);
+// console.log(c);
+// var arr = [1,2,3,4,6];
+// arr.pop()
+// console.log(arr);
+// var arr = [1,2,3,4,6];
+// arr.push(7);
+// console.log(arr);
+// var arr = [1,2,3,4,6];
+// arr.shift();
+// console.log(arr);
+// var arr = [1,2,3,4,6];
+// arr.unshift('b');
+// console.log(arr);
+// //array max min
+// function myArrayMin(arr) {
+//    return Math.min.apply(null, arr);
+//  }
+// const a = [1,2,3,4,5]
+// a.forEach(b);
+// function b(value) {
+//    console.log(value);
+// }
+
+// Date methods
+// const d = new Date();
+// d.getTime();
+ 
+// d.getFullYear();
+// d.getHours();
+// d.getMonth();
+
+</script>
+
+</html>
