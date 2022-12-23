@@ -1,0 +1,7 @@
+prerequesties are vscode editor , node js , mongoDb and its GUI Compass
+1. download the who website zip 
+2. open vs code editor and open online cuisine folder 
+3. then write command npm i in terminal 
+4. run index.js file by typing in terminal node index.js hit enter
+5. in terminal you will see something like http://localhost:8000 press and hold ctrl and take mouse cursor to localhost and click 
+6. and boom guys browser will automatically open 
