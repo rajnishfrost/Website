@@ -1,0 +1,168 @@
+.exploare-container h1 {
+    font-style: normal;
+    font-weight: 750;
+    font-size: 70px;
+    line-height: 130%;
+    text-align: center;
+    text-transform: capitalize;
+    color: rgba(3, 6, 20, 0.8);
+}
+
+.exploare-container p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 42px;
+    text-align: center;
+    color: rgba(3, 6, 20, 0.75);
+}
+
+.all-icon img {
+    /* background: #1E2EA9; */
+}
+
+.icon img {
+    width: 100%;
+}
+
+.all-icon h6 {
+    margin-top: 10px;
+    font-style: normal;
+    font-weight: 750;
+    font-size: 14px;
+    line-height: 19px;
+    color: rgba(3, 6, 20, 0.75);
+    opacity: 0.6;
+}
+
+.search-box {
+    background: #FBFBFB !important;
+    border: 2px solid rgba(3, 6, 20, 0.3) !important;
+    border-radius: 40px !important;
+    padding-left: 15px;
+}
+
+.form-outline input {
+    border: none !important;
+    line-height: 1.9 !important;
+    background: #FBFBFB !important;
+}
+
+.search-box button {
+    border: none;
+    background: #1E2EA9;
+    border-radius: 40px;
+    color: white;
+    padding: 10px 20px;
+}
+
+.float-right-icon {
+    position: absolute;
+    top: 120px;
+    right: 0px;
+}
+
+.float-right-icon img {
+    width: 100px;
+}
+
+.float-right-icon i {
+    font-size: 40px;
+    position: relative;
+    top: 10px;
+    left: -55px;
+}
+
+.card-container .card{
+    width: 400px !important;
+}
+
+.card-container .card button{
+    border: none;
+    font-style: normal;
+font-weight: 750;
+font-size: 14px;
+line-height: 17px;
+text-align: center;
+text-transform: lowercase;
+color: #1E2EA9;
+background: rgba(30, 46, 169, 0.1);
+border-radius: 4.6875px;
+}
+
+.card-container .card-body .row img{
+    width: 20px;
+    height: 20px;
+} 
+
+.card-container .card-body .row p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #030614;
+    opacity: 0.6;
+} 
+
+.card-container .card-body .row h6{
+    font-style: normal;
+    font-weight: 750;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1E2EA9;
+} 
+
+.card-container .card-body .row h5{
+    font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+color: #030614;
+opacity: 0.6;
+} 
+
+.share-float-button{
+    position: absolute;
+    top: 410px;
+    right: 0px;
+    background: #1E2EA9;
+    width: 50px;
+}
+
+.page-switch:hover{
+    background: #1E2EA9 !important;
+    color: white;
+}
+
+.dont-miss-container{
+    background: #FAFAFF;
+box-shadow: 30px 40px 30px rgba(0, 0, 0, 0.05);
+border-radius: 50px;
+}
+
+
+.dont-miss-container .left-image img{
+    width: 170px;
+    /* background: rgba(30, 46, 169, 0.05); */
+}
+
+.dont-miss-container .right-image img{
+width: 100%;
+}
+
+.dont-miss-container h1{
+    font-style: normal;
+font-weight: 750;
+font-size: 30px;
+line-height: 42px;
+text-transform: capitalize;
+color: rgba(3, 6, 20, 0.7);
+}
+
+.dont-miss-container p{
+    font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 30px;
+color: rgba(3, 6, 20, 0.75);
+}
